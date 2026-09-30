@@ -1,4 +1,4 @@
-name: CI/CD Pipeline with GHCR
+name: CI/CD Pipeline
 
 on:
   push:
@@ -24,13 +24,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven # Change to 'gradle' if using Gradle
-
-      - name: Make Build Wrapper Executable
-        run: chmod +x mvnw # Change to ./gradlew if using Gradle
+          cache: maven
 
       - name: Build and Test
-        run: ./mvnw clean package # Change to ./gradlew build if using Gradle
+        run: mvn clean package
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
